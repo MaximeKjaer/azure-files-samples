@@ -40,7 +40,8 @@
 1. Create test files
 
     ```powershell
-    .\RestSetAcls\test\TestSetup.ps1 -Context $context -FileShareName $FileShareName -NumberDirs 3 -NumberFilesPerDir 3 -Depth 1
+    Import-Module .\RestSetAcls\test\TestSetup.psm1
+    New-Arborescence -Context $context -FileShareName $FileShareName -NumberDirs 3 -NumberFilesPerDir 3 -Depth 1
     ```
 
     This will create a directory structure with 3 directories, each containing 3 files:
