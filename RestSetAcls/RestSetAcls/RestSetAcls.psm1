@@ -349,7 +349,7 @@ function Set-AzureFilesAclRecursive {
         [switch]$SkipDirectories = $false,
 
         [Parameter(Mandatory=$false)]
-        [switch]$WriteToPipeline = $false
+        [switch]$PassThru = $false
     )
 
     if ($SkipFiles -and $SkipDirectories) {
@@ -440,7 +440,7 @@ function Set-AzureFilesAclRecursive {
             }
             
             # Write full output if requested, otherwise write minimal output
-            if ($using:WriteToPipeline) {
+            if ($using:PassThru) {
                 Write-Output @{
                     Time = (Get-Date).ToString("o")
                     FullPath = $_.FullPath
@@ -465,7 +465,7 @@ function Set-AzureFilesAclRecursive {
             Write-Output $_
         } `
         | Write-LiveFilesAndFoldersProcessingStatus -RefreshRateHertz 10 -StartTime $startTime `
-        | ForEach-Object { if ($WriteToPipeline) { Write-Output $_ } }
+        | ForEach-Object { if ($PassThru) { Write-Output $_ } }
     } else {       
         Get-AzureFilesRecursive `
             -Context $Context `
@@ -489,7 +489,7 @@ function Set-AzureFilesAclRecursive {
             $processedCount++
             
             # Write full output if requested, otherwise write minimal output
-            if ($WriteToPipeline) {
+            if ($PassThru) {
                 Write-Output @{
                     Time = (Get-Date).ToString("o")
                     FullPath = $fullPath
@@ -506,7 +506,7 @@ function Set-AzureFilesAclRecursive {
             }            
         } `
         | Write-LiveFilesAndFoldersProcessingStatus -RefreshRateHertz 10 -StartTime $startTime `
-        | ForEach-Object { if ($WriteToPipeline) { Write-Output $_ } }
+        | ForEach-Object { if ($PassThru) { Write-Output $_ } }
     }
 
     $ProgressPreference = "Continue"

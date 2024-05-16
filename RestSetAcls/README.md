@@ -68,7 +68,7 @@ RestSetAcls.psm1 is a PowerShell module that provides functions to set Access Co
 
 You can export a CSV file that logs the changes made by `Set-AzureFilesAclRecursive`. This can be useful to keep track of the changes made, or to review them later.
 
-To do this, use the `-WriteToPipeline` flag, and pass the output to `Export-Csv`:
+To do this, use the `-PassThru` flag, and pass the output to `Export-Csv`:
 
 ```powershell
 Set-AzureFilesAclRecursive `
@@ -76,7 +76,7 @@ Set-AzureFilesAclRecursive `
    -FileShareName $FileShareName `
    -FilePath "/" `
    -SddlPermission $sddl `
-   -WriteToPipeline `
+   -PassThru `
    | Export-Csv -Path "C:\path\to\log.csv"
 ```
 
