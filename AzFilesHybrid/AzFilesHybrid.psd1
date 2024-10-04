@@ -51,7 +51,23 @@
     # ProcessorArchitecture = ''
     
     # Modules that must be imported into the global environment prior to importing this module
-    # RequiredModules = @()
+    RequiredModules = @(
+        @{
+            ModuleName = "Az"
+            GUID = "d48d710e-85cb-46a1-990f-22dae76f6b5f"
+            ModuleVersion = "2.8.0"
+        },
+        @{
+            ModuleName = "Az.Storage"
+            GUID = "dfa9e4ea-1407-446d-9111-79122977ab20"
+            ModuleVersion = "4.3.0"
+        },
+        @{
+            ModuleName = "Microsoft.Graph"
+            GUID = "fceec1eb-c2e8-4b2b-a120-0fab3f0d7b47"
+            ModuleVersion = "2.2.0"
+        }
+    )
     
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()
